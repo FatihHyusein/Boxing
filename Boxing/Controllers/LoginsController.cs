@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Boxing.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -28,6 +29,7 @@ namespace Boxing.Controllers
         }
 
         [HttpDelete]
+        [AuthorizationFilter]
         public async Task Delete(string id)
         {
             

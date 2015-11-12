@@ -1,4 +1,5 @@
 ﻿using Boxing.Models;
+using Boxing.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,14 @@ namespace Boxing.Controllers
     public class UsersController : ApiController
     {
         [HttpGet]
+        [AuthorizationFilter]
         public async Task<IEnumerable<User>> GetAll()
         {
             return new List<User>();
         }
 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetById(string id)
+        public async Task<HttpResponseMessage> GetById(string userId)
         {
             return Request.CreateResponse(System.Net.HttpStatusCode.OK, new
             {
