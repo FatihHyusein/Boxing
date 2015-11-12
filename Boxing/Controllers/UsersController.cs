@@ -38,5 +38,12 @@ namespace Boxing.Controllers
                     rating = 0
                 });
         }
+
+        [HttpDelete]
+        [AdminFilter]
+        public async Task Delete(string id)
+        {
+
+        }
     }
 }
