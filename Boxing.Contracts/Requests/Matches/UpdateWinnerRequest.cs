@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Boxing.Contracts.Requests.Logins
+namespace Boxing.Contracts.Requests.Matches
 {
-    public class CreateLoginRequest : IRequest<UserDto>
+    public class UpdateWinnerRequest : IRequest<MatchDto>
     {
-        public LoginDto User { get; set; }
+        public MatchDto Match { get; set; }
     }
 }

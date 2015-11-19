@@ -42,8 +42,8 @@ namespace Boxing.Api.Handlers.Controllers
                 User = login
             };
 
-            await _mediator.ExecuteAsync(request).ConfigureAwait(false);
-            return Request.CreateResponse(System.Net.HttpStatusCode.Created);
+            UserDto loggedUser = await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+            return Request.CreateResponse(System.Net.HttpStatusCode.Created, new { id=loggedUser.Id, authToken = loggedUser.AuthToken});
         }
 
         [Auth]
