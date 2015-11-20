@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Boxing.Contracts.Dto
 {
+    public enum MatchState
+    {
+        Pending,
+        Active,
+        Finished,
+        Canceled
+    }
     public class MatchDto
     {        public string Id { get; set; }
         public string Boxer1 { get; set; }

@@ -56,9 +56,12 @@
     <Compile Include="Requests\Logins\DeleteLoginRequest.cs" />
     <Compile Include="Requests\Matches\CreateMatchRequest.cs" />
     <Compile Include="Requests\Matches\CreatePredictionRequest.cs" />
+    <Compile Include="Requests\Matches\DeletePredictionRequest.cs" />
     <Compile Include="Requests\Matches\GetAllMatchesRequest.cs" />
+    <Compile Include="Requests\Matches\UpdatePredictionRequest.cs" />
     <Compile Include="Requests\Matches\UpdateWinnerRequest.cs" />
     <Compile Include="Requests\Users\CreateUserRequest.cs" />
+    <Compile Include="Requests\Users\DeleteUserRequest.cs" />
     <Compile Include="Requests\Users\GetAllUsersRequest.cs" />
     <Compile Include="Requests\Users\GetUserRequest.cs" />
     <Compile Include="Unit.cs" />

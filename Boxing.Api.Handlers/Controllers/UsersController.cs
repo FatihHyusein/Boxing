@@ -67,5 +67,16 @@ namespace Boxing.Api.Handlers.Controllers
             };
             return await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
+
+        [Admin]
+        [HttpDelete]
+        public async Task DeleteUser([FromUri] string id)
+        {
+            var request = new DeleteUserRequest()
+            {
+                UserId = id
+            };
+            await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+        }
     }
 }

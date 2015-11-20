@@ -58,9 +58,12 @@
     <Compile Include="Features\Logins\DeleteLoginHandler.cs" />
     <Compile Include="Features\Matches\CreateMatchHandler.cs" />
     <Compile Include="Features\Matches\CreatePredictionHandler.cs" />
+    <Compile Include="Features\Matches\DeletePredictionHandler.cs" />
     <Compile Include="Features\Matches\GetAllMatchesHandler.cs" />
+    <Compile Include="Features\Matches\UpdatePredictionHandler.cs" />
     <Compile Include="Features\Matches\UpdateWinnerHandler.cs" />
     <Compile Include="Features\Users\CreateUserHandler.cs" />
+    <Compile Include="Features\Users\DeleteUserHandler.cs" />
     <Compile Include="Features\Users\GetAllUsersHandler.cs" />
     <Compile Include="Features\Users\GetUserHandler.cs" />
     <Compile Include="Interfaces\IRequestHandler.cs" />

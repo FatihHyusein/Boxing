@@ -84,5 +84,34 @@ namespace Boxing.Api.Handlers.Controllers
             await _mediator.ExecuteAsync(request).ConfigureAwait(false);
             return Request.CreateResponse(HttpStatusCode.Created);
         }
+
+        [Auth]
+        [HttpPut]
+        [Route("api/matches/{matchId}/predictions/{predictionId}")]
+        public async Task<HttpResponseMessage> UpdatePrediction([FromUri]string matchId, [FromUri] string predictionId, [FromBody] PredictionDto prediction)
+        {
+            var request = new CreatePredictionRequest()
+            {
+                MatchId = matchId,
+                prediction = prediction
+            };
+
+            await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Auth]
+        [HttpDelete]
+        [Route("api/matches/{matchId}/predictions/{predictionId}")]
+        public async Task DeletePrediction([FromUri]string matchId, [FromUri] string predictionId)
+        {
+            var request = new CreatePredictionRequest()
+            {
+                MatchId = matchId,
+
+            };
+
+            await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+        }
     }
 }
