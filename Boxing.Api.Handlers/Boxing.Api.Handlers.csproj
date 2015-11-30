@@ -51,6 +51,14 @@
       <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
@@ -133,6 +141,10 @@
     <ProjectReference Include="..\Boxing.Core.Handlers2\Boxing.Core.Handlers.csproj">
       <Project>{8844f7c0-b2b1-4c79-96bf-355e75aa81fa}</Project>
       <Name>Boxing.Core.Handlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Boxing.Core.Sql\Boxing.Core.Sql.csproj">
+      <Project>{b8de4690-6e25-4cef-af99-cd28625f4f5c}</Project>
+      <Name>Boxing.Core.Sql</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

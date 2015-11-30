@@ -6,9 +6,11 @@ using Boxing.Api.Handlers.Filters;
 using Boxing.Core.Handlers;
 using Boxing.Core.Handlers.CrossCutting;
 using Boxing.Core.Handlers.Interfaces;
+using Boxing.Core.Sql;
 using FluentValidation.WebApi;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -38,12 +40,14 @@ namespace Boxing.Api.Handlers
             builder.RegisterWebApiFilterProvider(config);
 
             RegisterHandlers(builder);
+            RegisterContext(builder);
 
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
             FluentValidationModelValidatorProvider.Configure(config);
 
+            BoxingContext.SetInitializer();
             config.EnsureInitialized();
         }
 
@@ -63,5 +67,12 @@ namespace Boxing.Api.Handlers
                 fromKey: "handler");
         }
 
+        private static void RegisterContext(ContainerBuilder builder)
+        {
+            builder.RegisterType<BoxingContext>()
+                .InstancePerRequest()
+                .AsSelf()
+                .As<DbContext>();
+        }
     }
 }
