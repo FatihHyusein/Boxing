@@ -14,7 +14,7 @@ namespace Boxing.Contracts.Dto
         Canceled
     }
     public class MatchDto
-    {        public string Id { get; set; }
+    {        public int Id { get; set; }
         public string Boxer1 { get; set; }
         public string Boxer2 { get; set; }
         public string Place { get; set; }

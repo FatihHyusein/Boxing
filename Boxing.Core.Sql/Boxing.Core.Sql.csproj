@@ -51,8 +51,10 @@
   <ItemGroup>
     <Compile Include="BoxingContext.cs" />
     <Compile Include="Configurations\MatchConfiguration.cs" />
+    <Compile Include="Configurations\PredictionConfiguration.cs" />
     <Compile Include="Configurations\UserConfiguration.cs" />
     <Compile Include="Entities\MatchEntity.cs" />
+    <Compile Include="Entities\PredictionEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,6 +8,6 @@ namespace Boxing.Contracts.Requests.Logins
 {
     public class DeleteLoginRequest : IRequest
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }

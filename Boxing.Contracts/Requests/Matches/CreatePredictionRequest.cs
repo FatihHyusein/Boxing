@@ -9,7 +9,7 @@ namespace Boxing.Contracts.Requests.Matches
 {
     public class CreatePredictionRequest : IRequest
     {
-        public string MatchId { get; set; }
+        public int MatchId { get; set; }
         public PredictionDto prediction { get; set; }
     }
 }

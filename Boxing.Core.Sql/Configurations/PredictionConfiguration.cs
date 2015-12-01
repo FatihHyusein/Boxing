@@ -9,16 +9,15 @@ using System.Threading.Tasks;
 
 namespace Boxing.Core.Sql.Configurations
 {
-    public class UserConfiguration : EntityTypeConfiguration<UserEntity>
+    public class PredictionConfiguration : EntityTypeConfiguration<PredictionEntity>
     {
-        public UserConfiguration()
+        public PredictionConfiguration()
         {
-            ToTable("User");
+            ToTable("Predictions");
             Property(e => e.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(e => e.FullName).HasMaxLength(50).IsOptional();
-            Property(e => e.Password).HasMaxLength(20).IsOptional();
-            Property(e => e.AuthToken).HasMaxLength(100).IsOptional();
-            Property(e => e.Username).HasMaxLength(50).IsOptional();
+            Property(e => e.Winner).HasMaxLength(50).IsRequired();
+            Property(e => e.UserId).IsRequired();
+            Property(e => e.MatchId).IsRequired();
         }
     }
 }

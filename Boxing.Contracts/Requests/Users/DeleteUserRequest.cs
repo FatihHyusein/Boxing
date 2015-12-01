@@ -8,6 +8,6 @@ namespace Boxing.Contracts.Requests.Users
 {
     public class DeleteUserRequest : IRequest
     {
-        public string UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

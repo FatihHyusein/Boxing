@@ -59,7 +59,7 @@ namespace Boxing.Api.Handlers.Controllers
         }
 
         [HttpGet]
-        public async Task<UserDto> GetUser([FromUri] string id)
+        public async Task<UserDto> GetUser([FromUri] int id)
         {
             var request = new GetUserRequest()
             {
@@ -70,7 +70,7 @@ namespace Boxing.Api.Handlers.Controllers
 
         [Admin]
         [HttpDelete]
-        public async Task DeleteUser([FromUri] string id)
+        public async Task DeleteUser([FromUri] int id)
         {
             var request = new DeleteUserRequest()
             {

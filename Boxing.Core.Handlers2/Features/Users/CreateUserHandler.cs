@@ -23,20 +23,14 @@ namespace Boxing.Core.Handlers.Features.Users
 
         public async Task<UserDto> HandleAsync(CreateUserRequest request)
         {
-            //var entity = Mapper.Map<UserEntity>(request.User);
-            _db.Users.Add(new UserEntity()
-            {
-                FullName = request.User.FullName
-            });
+            var entity = Mapper.Map<UserEntity>(request.User);
+            _db.Users.Add(entity);
             await _db.SaveChangesAsync().ConfigureAwait(false);
-
-            var ddd = (await _db.Users.FindAsync(int.Parse(request.User.Password)).ConfigureAwait(false));
-
 
             return new UserDto
             {
-                Id = ddd.FullName,
-                Rating = ddd.Id
+                Id = entity.Id,
+                Rating = entity.Rating
             };
         }
     }

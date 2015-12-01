@@ -15,5 +15,7 @@ namespace Boxing.Core.Sql.Entities
         public DateTime DateOfMatch { get; set; }
         public string Dsecription { get; set; }
         public string Winner { get; set; }
+
+        public ICollection<PredictionEntity> Predictions { get; set; }
     }
 }

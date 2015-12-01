@@ -1,12 +1,15 @@
 ﻿using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
+using AutoMapper;
 using Boxing.Api.Handlers.App_Start;
 using Boxing.Api.Handlers.Filters;
+using Boxing.Contracts.Dto;
 using Boxing.Core.Handlers;
 using Boxing.Core.Handlers.CrossCutting;
 using Boxing.Core.Handlers.Interfaces;
 using Boxing.Core.Sql;
+using Boxing.Core.Sql.Entities;
 using FluentValidation.WebApi;
 using System;
 using System.Collections.Generic;
@@ -48,6 +51,7 @@ namespace Boxing.Api.Handlers
             FluentValidationModelValidatorProvider.Configure(config);
 
             BoxingContext.SetInitializer();
+            ConfigureMappings();
             config.EnsureInitialized();
         }
 
@@ -73,6 +77,14 @@ namespace Boxing.Api.Handlers
                 .InstancePerRequest()
                 .AsSelf()
                 .As<DbContext>();
+        }
+
+        private static void ConfigureMappings()
+        {
+            Mapper.CreateMap<UserDto, UserEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<MatchDto, MatchEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<PredictionDto, PredictionEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<LoginDto, UserEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
         }
     }
 }

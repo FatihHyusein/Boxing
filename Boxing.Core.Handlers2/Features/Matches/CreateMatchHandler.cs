@@ -16,7 +16,7 @@ namespace Boxing.Core.Handlers.Features.Matches
         {
             return new MatchDto
             {
-                Id = "1",
+                Id = 1,
                 Dsecription = "Match description"
             };
         }

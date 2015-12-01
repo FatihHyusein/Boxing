@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace Boxing.Core.Sql.Entities
         public string FullName { get; set; }
         public double Rating { get; set; }
         public string AuthToken { get; set; }
+        public ICollection<PredictionEntity> Predictions { get; set; }
     }
 }

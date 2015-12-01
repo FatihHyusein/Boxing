@@ -49,7 +49,7 @@ namespace Boxing.Api.Handlers.Controllers
 
         [Admin]
         [HttpPut]
-        public async Task<MatchDto> UpdateWinner(string id, [FromBody] MatchDto match)
+        public async Task<MatchDto> UpdateWinner(int id, [FromBody] MatchDto match)
         {
             match.Id = id;
             var request = new UpdateWinnerRequest
@@ -73,7 +73,7 @@ namespace Boxing.Api.Handlers.Controllers
         [Auth]
         [HttpPost]
         [Route("api/matches/{matchId}/predictions")]
-        public async Task<HttpResponseMessage> CreatePrediction([FromUri]string matchId, [FromBody] PredictionDto prediction)
+        public async Task<HttpResponseMessage> CreatePrediction([FromUri]int matchId, [FromBody] PredictionDto prediction)
         {
             var request = new CreatePredictionRequest()
             {
@@ -88,7 +88,7 @@ namespace Boxing.Api.Handlers.Controllers
         [Auth]
         [HttpPut]
         [Route("api/matches/{matchId}/predictions/{predictionId}")]
-        public async Task<HttpResponseMessage> UpdatePrediction([FromUri]string matchId, [FromUri] string predictionId, [FromBody] PredictionDto prediction)
+        public async Task<HttpResponseMessage> UpdatePrediction([FromUri]int matchId, [FromUri] string predictionId, [FromBody] PredictionDto prediction)
         {
             var request = new CreatePredictionRequest()
             {
@@ -103,7 +103,7 @@ namespace Boxing.Api.Handlers.Controllers
         [Auth]
         [HttpDelete]
         [Route("api/matches/{matchId}/predictions/{predictionId}")]
-        public async Task DeletePrediction([FromUri]string matchId, [FromUri] string predictionId)
+        public async Task DeletePrediction([FromUri]int matchId, [FromUri] string predictionId)
         {
             var request = new CreatePredictionRequest()
             {

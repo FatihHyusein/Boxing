@@ -43,18 +43,18 @@ namespace Boxing.Api.Handlers.Controllers
             };
 
             UserDto loggedUser = await _mediator.ExecuteAsync(request).ConfigureAwait(false);
-            return Request.CreateResponse(System.Net.HttpStatusCode.Created, new { id=loggedUser.Id, authToken = loggedUser.AuthToken});
+            return Request.CreateResponse(System.Net.HttpStatusCode.Created, new { id = loggedUser.Id, authToken = loggedUser.AuthToken });
         }
 
         [Auth]
         [HttpDelete]
-        public async Task Delete(string id)
+        public async Task Delete(int id)
         {
             var request = new DeleteLoginRequest()
             {
                 Id = id
             };
-            
+
             await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
 
