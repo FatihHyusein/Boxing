@@ -59,7 +59,7 @@ namespace Boxing.Api.Handlers.Controllers
         }
 
         [HttpGet]
-        public async Task<UserDto> GetUser([FromUri] int id)
+        public async Task<UserPreviewDto> GetUser([FromUri] int id)
         {
             var request = new GetUserRequest()
             {

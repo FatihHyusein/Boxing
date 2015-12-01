@@ -1,7 +1,9 @@
-﻿using Boxing.Contracts;
+﻿using AutoMapper;
+using Boxing.Contracts;
 using Boxing.Contracts.Dto;
 using Boxing.Contracts.Requests.Users;
 using Boxing.Core.Handlers.Interfaces;
+using Boxing.Core.Sql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,25 @@ using System.Threading.Tasks;
 
 namespace Boxing.Core.Handlers.Features.Users
 {
-    public class GetUserHandler : IRequestHandler<GetUserRequest, UserDto>
+    public class GetUserHandler : IRequestHandler<GetUserRequest, UserPreviewDto>
     {
-        public async Task<UserDto> HandleAsync(GetUserRequest request)
+        private readonly BoxingContext _db;
+
+        public GetUserHandler(BoxingContext db)
         {
-            return new UserDto();
+            _db = db;
+        }
+
+        public async Task<UserPreviewDto> HandleAsync(GetUserRequest request)
+        {
+            var user = await _db.Users.FindAsync(request.Id).ConfigureAwait(false);
+            if (user == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var userDetail = Mapper.Map<UserPreviewDto>(user);
+            return userDetail;
         }
     }
 }

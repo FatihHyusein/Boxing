@@ -50,6 +50,7 @@
     <Compile Include="Dto\PredictionDto.cs" />
     <Compile Include="Dto\RequestParamsDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
+    <Compile Include="Dto\UserPreviewDto.cs" />
     <Compile Include="IRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Logins\CreateLoginRequest.cs" />

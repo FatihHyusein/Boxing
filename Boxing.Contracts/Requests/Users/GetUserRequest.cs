@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Boxing.Contracts.Requests.Users
 {
-    public class GetUserRequest : IRequest<UserDto>
+    public class GetUserRequest : IRequest<UserPreviewDto>
     {
         public int Id { get; set; }
     }
