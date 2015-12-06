@@ -82,6 +82,8 @@ namespace Boxing.Api.Handlers
         private static void ConfigureMappings()
         {
             Mapper.CreateMap<UserDto, UserEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<UserEntity, UserDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+
             Mapper.CreateMap<UserPreviewDto, UserEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
             Mapper.CreateMap<UserEntity, UserPreviewDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
             Mapper.CreateMap<MatchDto, MatchEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));

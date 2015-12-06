@@ -48,7 +48,7 @@ namespace Boxing.Api.Handlers.Controllers
 
         [Auth]
         [HttpGet]
-        public async Task<IEnumerable<UserDto>> Get([FromUri]RequestParamsDto reqParams)
+        public async Task<IEnumerable<UserPreviewDto>> Get([FromUri]RequestParamsDto reqParams)
         {
             var request = new GetAllUsersRequest()
             {
