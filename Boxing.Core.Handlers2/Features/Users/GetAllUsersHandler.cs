@@ -27,7 +27,8 @@ namespace Boxing.Core.Handlers.Features.Users
             var takeCount = (request.RequestParams.Take == 0) ? 20 : request.RequestParams.Take;
 
             return (await _db.Users
-                .ToListAsync()).Select(Mapper.Map<UserPreviewDto>);
+                .ToListAsync()).OrderBy(t => t.FullName)
+                .Select(Mapper.Map<UserPreviewDto>);
         }
     }
 }

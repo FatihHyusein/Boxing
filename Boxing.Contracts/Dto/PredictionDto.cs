@@ -8,6 +8,9 @@ namespace Boxing.Contracts.Dto
 {
     public class PredictionDto
     {
+        public int Id { get; set; }
+        public int MatchId { get; set; }
+        public int UserId { get; set; }
         public string Winner { get; set; }
     }
 }

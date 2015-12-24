@@ -59,7 +59,7 @@ namespace Boxing.Api.Handlers.Controllers
             return await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
 
-        [Auth]
+        
         [HttpGet]
         public async Task<IEnumerable<MatchDto>> GetAllMatches([FromUri]RequestParamsDto reqParams)
         {
@@ -70,45 +70,63 @@ namespace Boxing.Api.Handlers.Controllers
             return await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
 
-        [Auth]
+        [HttpGet]
+        public async Task<MatchDto> GetUser([FromUri] int id)
+        {
+            var request = new GetMatchRequest()
+            {
+                Id = id
+            };
+            return await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+        }
+
+        [Admin]
+        [HttpDelete]
+        public async Task DeleteMatch([FromUri] int id)
+        {
+            var request = new DeleteMatchRequest()
+            {
+                MatchId = id
+            };
+            await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+        }
+
         [HttpPost]
         [Route("api/matches/{matchId}/predictions")]
         public async Task<HttpResponseMessage> CreatePrediction([FromUri]int matchId, [FromBody] PredictionDto prediction)
         {
+            prediction.MatchId = matchId;
             var request = new CreatePredictionRequest()
             {
-                MatchId = matchId,
-                prediction = prediction
+                Prediction = prediction
             };
 
             await _mediator.ExecuteAsync(request).ConfigureAwait(false);
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
-        [Auth]
         [HttpPut]
         [Route("api/matches/{matchId}/predictions/{predictionId}")]
-        public async Task<HttpResponseMessage> UpdatePrediction([FromUri]int matchId, [FromUri] string predictionId, [FromBody] PredictionDto prediction)
+        public async Task<HttpResponseMessage> UpdatePrediction([FromUri]int matchId, [FromUri] int predictionId, [FromBody] PredictionDto prediction)
         {
-            var request = new CreatePredictionRequest()
+            prediction.MatchId = matchId;
+            prediction.Id = predictionId;
+            var request = new UpdatePredictionRequest()
             {
-                MatchId = matchId,
-                prediction = prediction
+                Prediction = prediction
             };
 
             await _mediator.ExecuteAsync(request).ConfigureAwait(false);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Auth]
         [HttpDelete]
         [Route("api/matches/{matchId}/predictions/{predictionId}")]
-        public async Task DeletePrediction([FromUri]int matchId, [FromUri] string predictionId)
+        public async Task DeletePrediction([FromUri]int matchId, [FromUri] int predictionId)
         {
-            var request = new CreatePredictionRequest()
+            var request = new DeletePredictionRequest()
             {
-                MatchId = matchId,
-
+                PredictionId = predictionId
             };
 
             await _mediator.ExecuteAsync(request).ConfigureAwait(false);

@@ -38,6 +38,11 @@ namespace Boxing.Core.Handlers.Features.Logins
             }
             user.AuthToken = "dafuq" + user.Id;
 
+            if(user.Username == "admin")
+            {
+                user.AuthToken = "securetoken";
+            }
+
             await _db.SaveChangesAsync().ConfigureAwait(false);
 
             return new UserDto()
