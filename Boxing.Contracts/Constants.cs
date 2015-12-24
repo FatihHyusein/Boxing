@@ -11,6 +11,8 @@ namespace Boxing.Contracts
         public static class Headers
         {
             public static string AuthTokenHeader = "Auth-Token";
+            public static string AdminToken = "admin-token";
+            public static int CurrentUserId { get; set; }
         }
     }
 }

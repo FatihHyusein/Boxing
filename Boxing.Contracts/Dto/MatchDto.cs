@@ -21,5 +21,7 @@ namespace Boxing.Contracts.Dto
         public DateTime DateOfMatch { get; set; }
         public string Dsecription { get; set; }
         public string Winner { get; set; }
+        public ICollection<PredictionDto> Predictions { get; set; }
+        public PredictionDto CurrentPrediction { get; set; }
     }
 }

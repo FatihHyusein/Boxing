@@ -1,4 +1,5 @@
-﻿using Boxing.Contracts.Requests.Logins;
+﻿using Boxing.Contracts;
+using Boxing.Contracts.Requests.Logins;
 using Boxing.Core.Sql;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Boxing.Core.Handlers.Features.Logins
 
         protected override async Task HandleCore(DeleteLoginRequest command)
         {
-            var user = await _db.Users.FindAsync(command.Id).ConfigureAwait(false);
+            var user = await _db.Users.FindAsync(Constants.Headers.CurrentUserId).ConfigureAwait(false);
 
             if (user == null)
             {

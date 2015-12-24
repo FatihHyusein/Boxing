@@ -59,7 +59,7 @@ namespace Boxing.Api.Handlers.Controllers
             return await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
 
-        
+        [Auth]
         [HttpGet]
         public async Task<IEnumerable<MatchDto>> GetAllMatches([FromUri]RequestParamsDto reqParams)
         {
@@ -70,8 +70,9 @@ namespace Boxing.Api.Handlers.Controllers
             return await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
 
+        [Auth]
         [HttpGet]
-        public async Task<MatchDto> GetUser([FromUri] int id)
+        public async Task<MatchDto> GetMatch([FromUri] int id)
         {
             var request = new GetMatchRequest()
             {
@@ -91,6 +92,7 @@ namespace Boxing.Api.Handlers.Controllers
             await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
 
+        [Auth]
         [HttpPost]
         [Route("api/matches/{matchId}/predictions")]
         public async Task<HttpResponseMessage> CreatePrediction([FromUri]int matchId, [FromBody] PredictionDto prediction)
@@ -105,6 +107,7 @@ namespace Boxing.Api.Handlers.Controllers
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
+        [Auth]
         [HttpPut]
         [Route("api/matches/{matchId}/predictions/{predictionId}")]
         public async Task<HttpResponseMessage> UpdatePrediction([FromUri]int matchId, [FromUri] int predictionId, [FromBody] PredictionDto prediction)
@@ -120,6 +123,7 @@ namespace Boxing.Api.Handlers.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Auth]
         [HttpDelete]
         [Route("api/matches/{matchId}/predictions/{predictionId}")]
         public async Task DeletePrediction([FromUri]int matchId, [FromUri] int predictionId)

@@ -1,4 +1,5 @@
-﻿using Boxing.Contracts.Dto;
+﻿using Boxing.Contracts;
+using Boxing.Contracts.Dto;
 using Boxing.Contracts.Requests.Matches;
 using Boxing.Core.Sql;
 using Boxing.Core.Sql.Entities;
@@ -22,6 +23,8 @@ namespace Boxing.Core.Handlers.Features.Matches
         protected override async Task HandleCore(CreatePredictionRequest request)
         {
             var prediction = AutoMapper.Mapper.Map<PredictionEntity>(request.Prediction);
+            prediction.UserId = Constants.Headers.CurrentUserId;
+
             _db.Predictions.Add(prediction);
             await _db.SaveChangesAsync().ConfigureAwait(false);
         }

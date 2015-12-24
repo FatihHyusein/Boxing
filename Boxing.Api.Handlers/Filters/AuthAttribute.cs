@@ -36,6 +36,12 @@ namespace Boxing.Api.Handlers.Filters
                 actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
             }
 
+            var loggedUser = _db.Users.Where(t => t.AuthToken == token).FirstOrDefault();
+            if (loggedUser != null)
+            {
+                Constants.Headers.CurrentUserId = loggedUser.Id;
+            }
+
             base.OnAuthorization(actionContext);
         }
     }

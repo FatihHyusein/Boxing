@@ -48,12 +48,9 @@ namespace Boxing.Api.Handlers.Controllers
 
         [Auth]
         [HttpDelete]
-        public async Task Delete(int id)
+        public async Task Delete()
         {
-            var request = new DeleteLoginRequest()
-            {
-                Id = id
-            };
+            var request = new DeleteLoginRequest() { };
 
             await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
