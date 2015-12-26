@@ -10,7 +10,6 @@ namespace Boxing.Core.Handlers.Features.Matches
 {
     public class UpdatePredictionHandler : CommandHandler<UpdatePredictionRequest>
     {
-
         private readonly BoxingContext _db;
 
         public UpdatePredictionHandler(BoxingContext db)
@@ -26,7 +25,13 @@ namespace Boxing.Core.Handlers.Features.Matches
             {
                 throw new ArgumentNullException();
             }
-            
+
+            var match = await _db.Matches.FindAsync(prediction.MatchId).ConfigureAwait(false);
+            if (match.Winner != null)
+            {
+                throw new ArgumentException();
+            }
+
             prediction.Winner = request.Prediction.Winner;
 
             await _db.SaveChangesAsync().ConfigureAwait(false);

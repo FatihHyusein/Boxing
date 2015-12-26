@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Boxing.Core.Handlers.Features.Matches
 {
-    public class CreateMatchHandler : IRequestHandler<CreateMatchRequest, MatchDto>
+    public class CreateMatchHandler : IRequestHandler<CreateMatchRequest, PostPutMatchDto>
     {
         private readonly BoxingContext _db;
 
@@ -20,14 +20,14 @@ namespace Boxing.Core.Handlers.Features.Matches
         {
             _db = db;
         }
-        public async Task<MatchDto> HandleAsync(CreateMatchRequest request)
+        public async Task<PostPutMatchDto> HandleAsync(CreateMatchRequest request)
         {
             var newMatch = AutoMapper.Mapper.Map<MatchEntity>(request.Match);
 
             _db.Matches.Add(newMatch);
             await _db.SaveChangesAsync().ConfigureAwait(false);
 
-            return AutoMapper.Mapper.Map<MatchDto>(newMatch);
+            return AutoMapper.Mapper.Map<PostPutMatchDto>(newMatch);
         }
     }
 }

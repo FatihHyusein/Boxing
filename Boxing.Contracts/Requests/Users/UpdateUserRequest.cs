@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Boxing.Contracts.Requests.Matches
+namespace Boxing.Contracts.Requests.Users
 {
-    public class CreateMatchRequest : IRequest<PostPutMatchDto>
+    public class UpdateUserRequest : IRequest<UserDto>
     {
-        public PostPutMatchDto Match { get; set; }
+        public UserDto User { get; set; }
     }
 }

@@ -15,5 +15,6 @@ namespace Boxing.Core.Sql.Entities
         public UserEntity User { get; set; }
         public int MatchId { get; set; }
         public MatchEntity Match { get; set; }
+        public bool IsClosedMatch { get; set; }
     }
 }

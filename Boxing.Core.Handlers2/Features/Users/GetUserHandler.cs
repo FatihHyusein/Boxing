@@ -6,6 +6,7 @@ using Boxing.Core.Handlers.Interfaces;
 using Boxing.Core.Sql;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,10 @@ namespace Boxing.Core.Handlers.Features.Users
                 throw new ArgumentNullException();
             }
 
+            user.Predictions = await _db.Predictions.Where(u => u.UserId == user.Id).ToListAsync();
+
             var userDetail = Mapper.Map<UserPreviewDto>(user);
+
             return userDetail;
         }
     }

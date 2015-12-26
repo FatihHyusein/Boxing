@@ -47,6 +47,20 @@ namespace Boxing.Api.Handlers.Controllers
         }
 
         [Auth]
+        [HttpPut]
+        public async Task<HttpResponseMessage> Update([FromUri] int id, [FromBody] UserDto User)
+        {
+            User.Id = id;
+            var request = new UpdateUserRequest()
+            {
+                User = User
+            };
+
+            UserDto updatedUser = await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+            return Request.CreateResponse(HttpStatusCode.OK, updatedUser);
+        }
+
+        [Auth]
         [HttpGet]
         public async Task<IEnumerable<UserPreviewDto>> Get([FromUri]RequestParamsDto reqParams)
         {

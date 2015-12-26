@@ -5,6 +5,7 @@ using Boxing.Core.Sql;
 using Boxing.Core.Sql.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,28 @@ namespace Boxing.Core.Handlers.Features.Matches
             if (match == null)
             {
                 throw new ArgumentNullException();
+            }
+
+            if (match.Status == "Canceled")
+            {
+                throw new ArgumentException();
+            }
+
+            if (match.Winner == null)
+            {
+                var predictions = await _db.Predictions.Where(p => p.MatchId == request.Match.Id).Include(i => i.User).ToListAsync();
+                foreach (var prediction in predictions)
+                {
+                    prediction.IsClosedMatch = true;
+                    if (prediction.Winner.Equals(match.Winner))
+                    {
+                        prediction.User.Rating += 5;
+                    }
+                    else
+                    {
+                        prediction.User.Rating -= 2;
+                    }
+                }
             }
 
             match.Winner = request.Match.Winner;

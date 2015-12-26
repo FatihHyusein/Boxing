@@ -13,6 +13,14 @@ namespace Boxing.Contracts
             public static string AuthTokenHeader = "Auth-Token";
             public static string AdminToken = "admin-token";
             public static int CurrentUserId { get; set; }
+
+            public enum MatchState
+            {
+                Pending,
+                Active,
+                Finished,
+                Canceled
+            }
         }
     }
 }

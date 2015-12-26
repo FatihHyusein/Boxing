@@ -24,11 +24,31 @@ namespace Boxing.Core.Handlers.Features.Users
 
         public async Task<IEnumerable<UserPreviewDto>> HandleAsync(GetAllUsersRequest request)
         {
-            var takeCount = (request.RequestParams.Take == 0) ? 20 : request.RequestParams.Take;
-
-            return (await _db.Users
-                .ToListAsync()).OrderBy(t => t.FullName)
-                .Select(Mapper.Map<UserPreviewDto>);
+            try
+            {
+                if (request.RequestParams.SortingOrder.Equals("DESC"))
+                {
+                    return (await _db.Users
+                    .ToListAsync())
+                    .OrderByDescending(t => t.GetType().GetProperty(request.RequestParams.SortBy).GetValue(t, null))
+                    .Skip(request.RequestParams.Skip)
+                    .Take(request.RequestParams.Take)
+                    .Select(Mapper.Map<UserPreviewDto>);
+                }
+                else
+                {
+                    return (await _db.Users
+                    .ToListAsync())
+                    .OrderBy(t => t.GetType().GetProperty(request.RequestParams.SortBy).GetValue(t, null))
+                    .Skip(request.RequestParams.Skip)
+                    .Take(request.RequestParams.Take)
+                    .Select(Mapper.Map<UserPreviewDto>);
+                }
+            }
+            catch
+            {
+                throw new ArgumentException();
+            }
         }
     }
 }

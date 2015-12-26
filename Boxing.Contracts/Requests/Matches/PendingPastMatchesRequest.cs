@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Boxing.Contracts.Requests.Matches
 {
-    public class CreateMatchRequest : IRequest<PostPutMatchDto>
+    public class PendingPastMatchesRequest : IRequest<IEnumerable<MatchDto>>
     {
-        public PostPutMatchDto Match { get; set; }
+        public RequestParamsDto RequestParams { get; set; }
     }
 }

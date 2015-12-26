@@ -12,17 +12,17 @@ using System.Threading.Tasks;
 
 namespace Boxing.Core.Handlers.Features.Matches
 {
-    public class GetAllMatchesHandler : IRequestHandler<GetAllMatchesRequest, IEnumerable<MatchDto>>
+    public class PendingPastMatchesHandler : IRequestHandler<PendingPastMatchesRequest, IEnumerable<MatchDto>>
     {
 
         private readonly BoxingContext _db;
 
-        public GetAllMatchesHandler(BoxingContext db)
+        public PendingPastMatchesHandler(BoxingContext db)
         {
             _db = db;
         }
 
-        public async Task<IEnumerable<MatchDto>> HandleAsync(GetAllMatchesRequest request)
+        public async Task<IEnumerable<MatchDto>> HandleAsync(PendingPastMatchesRequest request)
         {
             try
             {
@@ -30,6 +30,7 @@ namespace Boxing.Core.Handlers.Features.Matches
                 {
                     return (await _db.Matches
                     .ToListAsync())
+                    .Where(m => m.DateOfMatch.CompareTo(DateTime.Now) < 0 && m.Winner == null)
                     .OrderByDescending(t => t.GetType().GetProperty(request.RequestParams.SortBy).GetValue(t, null))
                     .Skip(request.RequestParams.Skip)
                     .Take(request.RequestParams.Take)
@@ -39,6 +40,7 @@ namespace Boxing.Core.Handlers.Features.Matches
                 {
                     return (await _db.Matches
                     .ToListAsync())
+                    .Where(m => m.DateOfMatch.CompareTo(DateTime.Now) < 0 && m.Winner == null)
                     .OrderBy(t => t.GetType().GetProperty(request.RequestParams.SortBy).GetValue(t, null))
                     .Skip(request.RequestParams.Skip)
                     .Take(request.RequestParams.Take)

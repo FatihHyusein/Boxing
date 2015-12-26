@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Dto\GetPredictionDto.cs" />
     <Compile Include="Dto\LoginDto.cs" />
     <Compile Include="Dto\MatchDto.cs" />
+    <Compile Include="Dto\PostPutMatchDto.cs" />
     <Compile Include="Dto\PredictionDto.cs" />
     <Compile Include="Dto\RequestParamsDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
@@ -55,18 +57,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Logins\CreateLoginRequest.cs" />
     <Compile Include="Requests\Logins\DeleteLoginRequest.cs" />
+    <Compile Include="Requests\Matches\CancelMatchRequest.cs" />
     <Compile Include="Requests\Matches\CreateMatchRequest.cs" />
     <Compile Include="Requests\Matches\CreatePredictionRequest.cs" />
     <Compile Include="Requests\Matches\DeleteMatchRequest.cs" />
     <Compile Include="Requests\Matches\DeletePredictionRequest.cs" />
     <Compile Include="Requests\Matches\GetAllMatchesRequest.cs" />
     <Compile Include="Requests\Matches\GetMatchRequest.cs" />
+    <Compile Include="Requests\Matches\PendingPastMatchesRequest.cs" />
+    <Compile Include="Requests\Matches\UpdateMatchRequest.cs" />
     <Compile Include="Requests\Matches\UpdatePredictionRequest.cs" />
     <Compile Include="Requests\Matches\UpdateWinnerRequest.cs" />
     <Compile Include="Requests\Users\CreateUserRequest.cs" />
     <Compile Include="Requests\Users\DeleteUserRequest.cs" />
     <Compile Include="Requests\Users\GetAllUsersRequest.cs" />
     <Compile Include="Requests\Users\GetUserRequest.cs" />
+    <Compile Include="Requests\Users\UpdateUserRequest.cs" />
     <Compile Include="Unit.cs" />
   </ItemGroup>
   <ItemGroup>

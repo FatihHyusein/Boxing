@@ -36,20 +36,35 @@ namespace Boxing.Api.Handlers.Controllers
 
         [Admin]
         [HttpPost]
-        public async Task<HttpResponseMessage> CreateMatch([FromBody] MatchDto match)
+        public async Task<HttpResponseMessage> CreateMatch([FromBody] PostPutMatchDto match)
         {
             var request = new CreateMatchRequest()
             {
                 Match = match
             };
 
-            MatchDto addedMatch = await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+            PostPutMatchDto addedMatch = await _mediator.ExecuteAsync(request).ConfigureAwait(false);
             return Request.CreateResponse(HttpStatusCode.Created, addedMatch);
         }
 
         [Admin]
         [HttpPut]
-        public async Task<MatchDto> UpdateWinner(int id, [FromBody] MatchDto match)
+        public async Task<HttpResponseMessage> UpdateMatch([FromUri] int id, [FromBody] PostPutMatchDto Match)
+        {
+            Match.Id = id;
+            var request = new UpdateMatchRequest()
+            {
+                Match = Match
+            };
+
+            PostPutMatchDto updatedMatch = await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+            return Request.CreateResponse(HttpStatusCode.OK, updatedMatch);
+        }
+
+        [Admin]
+        [HttpPut]
+        [Route("api/matches/{id}/updateWinner")]
+        public async Task<MatchDto> UpdateWinner([FromUri]int id, [FromBody] MatchDto match)
         {
             match.Id = id;
             var request = new UpdateWinnerRequest
@@ -59,11 +74,36 @@ namespace Boxing.Api.Handlers.Controllers
             return await _mediator.ExecuteAsync(request).ConfigureAwait(false);
         }
 
+        [Admin]
+        [HttpPut]
+        [Route("api/matches/{id}/cancelMatch")]
+        public async Task<HttpResponseMessage> CancelMatch([FromUri]int id)
+        {
+            var request = new CancelMatchRequest
+            {
+                Id = id
+            };
+            await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         [Auth]
         [HttpGet]
         public async Task<IEnumerable<MatchDto>> GetAllMatches([FromUri]RequestParamsDto reqParams)
         {
             var request = new GetAllMatchesRequest()
+            {
+                RequestParams = reqParams
+            };
+            return await _mediator.ExecuteAsync(request).ConfigureAwait(false);
+        }
+
+        [Admin]
+        [HttpGet]
+        [Route("api/matches/pendingPastMatches")]
+        public async Task<IEnumerable<MatchDto>> pendingPastMatches([FromUri]RequestParamsDto reqParams)
+        {
+            var request = new PendingPastMatchesRequest()
             {
                 RequestParams = reqParams
             };

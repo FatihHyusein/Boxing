@@ -8,9 +8,22 @@ namespace Boxing.Contracts.Dto
 {
     public class RequestParamsDto
     {
+        private int take;
+
         public int Skip { get; set; }
-        public int Take { get; set; }
         public string Sort { get; set; }
+
+        public int Take
+        {
+            get
+            {
+                return this.take;
+            }
+            set
+            {
+                this.take = (value > 0) ? value : 20;
+            }
+        }
         public string SortingOrder
         {
             get
@@ -36,7 +49,6 @@ namespace Boxing.Contracts.Dto
                 else
                 {
                     return (this.Sort[0] == '-') ? this.Sort.Substring(1) : this.Sort;
-
                 }
             }
         }

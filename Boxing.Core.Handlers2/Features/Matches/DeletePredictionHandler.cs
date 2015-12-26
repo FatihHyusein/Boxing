@@ -26,6 +26,12 @@ namespace Boxing.Core.Handlers.Features.Matches
                 throw new ArgumentNullException();
             }
 
+            var match = await _db.Matches.FindAsync(prediction.MatchId).ConfigureAwait(false);
+            if (match.Winner != null)
+            {
+                throw new ArgumentException();
+            }
+
             _db.Predictions.Remove(prediction);
             await _db.SaveChangesAsync().ConfigureAwait(false);
         }

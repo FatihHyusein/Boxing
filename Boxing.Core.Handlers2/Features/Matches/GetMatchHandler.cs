@@ -33,7 +33,7 @@ namespace Boxing.Core.Handlers.Features.Matches
             match.Predictions = await _db.Predictions.Where(p => p.MatchId == request.Id).ToListAsync().ConfigureAwait(false);
 
             var matchDetail = Mapper.Map<MatchDto>(match);
-            matchDetail.CurrentPrediction = Mapper.Map<PredictionDto>(match.Predictions.Where(u => u.UserId == Constants.Headers.CurrentUserId).FirstOrDefault());
+            matchDetail.CurrentPrediction = Mapper.Map<GetPredictionDto>(match.Predictions.Where(u => u.UserId == Constants.Headers.CurrentUserId).FirstOrDefault());
             return matchDetail;
         }
     }

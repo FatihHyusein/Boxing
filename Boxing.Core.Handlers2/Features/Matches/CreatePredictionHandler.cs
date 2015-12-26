@@ -22,6 +22,12 @@ namespace Boxing.Core.Handlers.Features.Matches
 
         protected override async Task HandleCore(CreatePredictionRequest request)
         {
+            var match = await _db.Matches.FindAsync(request.Prediction.MatchId).ConfigureAwait(false);
+            if (match.Winner != null)
+            {
+                throw new ArgumentException();
+            }
+
             var prediction = AutoMapper.Mapper.Map<PredictionEntity>(request.Prediction);
             prediction.UserId = Constants.Headers.CurrentUserId;
 
