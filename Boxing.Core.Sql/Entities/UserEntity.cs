@@ -13,8 +13,10 @@ namespace Boxing.Core.Sql.Entities
         public string Username { get; set; }
         public string Password { get; set; }
         public string FullName { get; set; }
-        public double Rating { get; set; }
         public string AuthToken { get; set; }
         public ICollection<PredictionEntity> Predictions { get; set; }
+
+        public int RatingId { get; set; }
+        public RatingEntity Rating { get; set; }
     }
 }

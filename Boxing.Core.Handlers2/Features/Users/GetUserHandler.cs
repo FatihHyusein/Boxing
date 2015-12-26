@@ -30,7 +30,8 @@ namespace Boxing.Core.Handlers.Features.Users
                 throw new ArgumentNullException();
             }
 
-            user.Predictions = await _db.Predictions.Where(u => u.UserId == user.Id).ToListAsync();
+            user.Predictions = await _db.Predictions.Where(u => u.UserId == user.Id).ToListAsync().ConfigureAwait(false);
+            user.Rating = await _db.Ratings.FindAsync(user.RatingId).ConfigureAwait(false);
 
             var userDetail = Mapper.Map<UserPreviewDto>(user);
 

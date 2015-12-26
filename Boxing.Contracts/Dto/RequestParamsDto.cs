@@ -9,9 +9,32 @@ namespace Boxing.Contracts.Dto
     public class RequestParamsDto
     {
         private int take;
+        private string search;
+        private DateTime searchedDate;
 
         public int Skip { get; set; }
         public string Sort { get; set; }
+
+        public string Search
+        {
+            get
+            {
+                return this.search;
+            }
+            set
+            {
+                this.search = (value == null) ? string.Empty : value;
+            }
+        }
+
+        public DateTime SearchedDate
+        {
+            get
+            {
+                DateTime.TryParse(this.Search, out searchedDate);
+                return this.searchedDate;
+            }
+        }
 
         public int Take
         {

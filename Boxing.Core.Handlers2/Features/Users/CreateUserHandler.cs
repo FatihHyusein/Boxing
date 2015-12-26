@@ -24,13 +24,16 @@ namespace Boxing.Core.Handlers.Features.Users
         public async Task<UserDto> HandleAsync(CreateUserRequest request)
         {
             var entity = Mapper.Map<UserEntity>(request.User);
-            _db.Users.Add(entity);
-            await _db.SaveChangesAsync().ConfigureAwait(false);
 
+            entity.Rating = new RatingEntity();
+            _db.Users.Add(entity);
+
+            await _db.SaveChangesAsync().ConfigureAwait(false);
+            
             return new UserDto
             {
                 Id = entity.Id,
-                Rating = entity.Rating
+                Rating = Mapper.Map<RatingDto>(entity.Rating)
             };
         }
     }

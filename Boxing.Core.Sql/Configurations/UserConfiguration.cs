@@ -16,9 +16,11 @@ namespace Boxing.Core.Sql.Configurations
             ToTable("User");
             Property(e => e.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(e => e.FullName).HasMaxLength(50).IsOptional();
-            Property(e => e.Password).HasMaxLength(20).IsOptional();
+            Property(e => e.Password).HasMaxLength(20).IsRequired();
             Property(e => e.AuthToken).HasMaxLength(100).IsOptional();
-            Property(e => e.Username).HasMaxLength(50).IsOptional();
+            Property(e => e.Username).HasMaxLength(50).IsRequired();
+
+            Property(e => e.RatingId).IsRequired();
         }
     }
 }

@@ -36,17 +36,21 @@ namespace Boxing.Core.Handlers.Features.Matches
 
             if (match.Winner == null)
             {
-                var predictions = await _db.Predictions.Where(p => p.MatchId == request.Match.Id).Include(i => i.User).ToListAsync();
+                var predictions = await _db.Predictions.Include(p=>p.User.Rating).Where(p => p.MatchId == request.Match.Id).Include(i => i.User).ToListAsync();
                 foreach (var prediction in predictions)
                 {
                     prediction.IsClosedMatch = true;
-                    if (prediction.Winner.Equals(match.Winner))
+                    if (prediction.Winner.Equals(request.Match.Winner))
                     {
-                        prediction.User.Rating += 5;
+                        prediction.User.Rating.CorrectPredictionsCount++;
+                        prediction.User.Rating.TotalPredictions++;
+                        prediction.User.Rating.Rating += 5;
                     }
                     else
                     {
-                        prediction.User.Rating -= 2;
+                        prediction.User.Rating.WrongPredictionsCount++;
+                        prediction.User.Rating.TotalPredictions++;
+                        prediction.User.Rating.Rating -= 2;
                     }
                 }
             }

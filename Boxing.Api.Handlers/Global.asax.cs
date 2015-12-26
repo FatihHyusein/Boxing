@@ -97,6 +97,9 @@ namespace Boxing.Api.Handlers
             Mapper.CreateMap<PredictionEntity, GetPredictionDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
 
             Mapper.CreateMap<LoginDto, UserEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+
+            Mapper.CreateMap<RatingDto, RatingEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<RatingEntity, RatingDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Dto\MatchDto.cs" />
     <Compile Include="Dto\PostPutMatchDto.cs" />
     <Compile Include="Dto\PredictionDto.cs" />
+    <Compile Include="Dto\RatingDto.cs" />
     <Compile Include="Dto\RequestParamsDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Dto\UserPreviewDto.cs" />

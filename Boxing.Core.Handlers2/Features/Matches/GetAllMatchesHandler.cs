@@ -30,6 +30,12 @@ namespace Boxing.Core.Handlers.Features.Matches
                 {
                     return (await _db.Matches
                     .ToListAsync())
+                    .Where(t => t.Boxer1.Contains(request.RequestParams.Search) ||
+                    t.Boxer2.Contains(request.RequestParams.Search) ||
+                    t.DateOfMatch.Equals(request.RequestParams.SearchedDate) ||
+                    t.Dsecription != null && t.Dsecription.Contains(request.RequestParams.Search) ||
+                    t.Place!= null && t.Place.Contains(request.RequestParams.Search) ||
+                    t.Status!= null && t.Status.Equals(request.RequestParams.Search))
                     .OrderByDescending(t => t.GetType().GetProperty(request.RequestParams.SortBy).GetValue(t, null))
                     .Skip(request.RequestParams.Skip)
                     .Take(request.RequestParams.Take)
@@ -39,6 +45,12 @@ namespace Boxing.Core.Handlers.Features.Matches
                 {
                     return (await _db.Matches
                     .ToListAsync())
+                    .Where(t => t.Boxer1.Contains(request.RequestParams.Search) ||
+                    t.Boxer2.Contains(request.RequestParams.Search) ||
+                    t.DateOfMatch.Equals(request.RequestParams.SearchedDate) ||
+                    t.Dsecription != null && t.Dsecription.Contains(request.RequestParams.Search) ||
+                    t.Place != null && t.Place.Contains(request.RequestParams.Search) ||
+                    t.Status != null && t.Status.Equals(request.RequestParams.Search))
                     .OrderBy(t => t.GetType().GetProperty(request.RequestParams.SortBy).GetValue(t, null))
                     .Skip(request.RequestParams.Skip)
                     .Take(request.RequestParams.Take)

@@ -28,8 +28,10 @@ namespace Boxing.Core.Handlers.Features.Users
             {
                 if (request.RequestParams.SortingOrder.Equals("DESC"))
                 {
-                    return (await _db.Users
+                    return (await _db.Users.Include(u => u.Rating)
                     .ToListAsync())
+                    .Where(t => t.FullName != null && t.FullName.Contains(request.RequestParams.Search) ||
+                    t.Username.Contains(request.RequestParams.Search))
                     .OrderByDescending(t => t.GetType().GetProperty(request.RequestParams.SortBy).GetValue(t, null))
                     .Skip(request.RequestParams.Skip)
                     .Take(request.RequestParams.Take)
@@ -37,8 +39,10 @@ namespace Boxing.Core.Handlers.Features.Users
                 }
                 else
                 {
-                    return (await _db.Users
+                    return (await _db.Users.Include(u => u.Rating)
                     .ToListAsync())
+                    .Where(t => t.FullName != null && t.FullName.Contains(request.RequestParams.Search) ||
+                    t.Username.Contains(request.RequestParams.Search))
                     .OrderBy(t => t.GetType().GetProperty(request.RequestParams.SortBy).GetValue(t, null))
                     .Skip(request.RequestParams.Skip)
                     .Take(request.RequestParams.Take)
