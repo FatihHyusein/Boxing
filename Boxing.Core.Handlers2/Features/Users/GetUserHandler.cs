@@ -30,10 +30,11 @@ namespace Boxing.Core.Handlers.Features.Users
                 throw new ArgumentNullException("Can not find user with this id.");
             }
 
-            user.Predictions = await _db.Predictions.Where(u => u.UserId == user.Id).ToListAsync().ConfigureAwait(false);
+            user.Predictions = await _db.Predictions.Include(p=>p.Match).Where(u => u.UserId == user.Id).ToListAsync().ConfigureAwait(false);
             user.Rating = await _db.Ratings.FindAsync(user.RatingId).ConfigureAwait(false);
 
             var userDetail = Mapper.Map<UserPreviewDto>(user);
+           
 
             return userDetail;
         }

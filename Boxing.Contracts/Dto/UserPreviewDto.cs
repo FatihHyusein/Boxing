@@ -13,6 +13,6 @@ namespace Boxing.Contracts.Dto
         public string FullName { get; set; }
         public RatingDto Rating { get; set; }
 
-        public ICollection<GetPredictionDto> Predictions { get; set; }
+        public ICollection<PredictionInUserDto> Predictions { get; set; }
     }
 }

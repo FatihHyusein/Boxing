@@ -91,11 +91,16 @@ namespace Boxing.Api.Handlers
             Mapper.CreateMap<MatchEntity, MatchDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
             Mapper.CreateMap<PostPutMatchDto, MatchEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
             Mapper.CreateMap<MatchEntity, PostPutMatchDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<MatchInUserDto, MatchEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<MatchEntity, MatchInUserDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            
 
             Mapper.CreateMap<PredictionDto, PredictionEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
             Mapper.CreateMap<PredictionEntity, PredictionDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
             Mapper.CreateMap<GetPredictionDto, PredictionEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
             Mapper.CreateMap<PredictionEntity, GetPredictionDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<PredictionInUserDto, PredictionEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
+            Mapper.CreateMap<PredictionEntity, PredictionInUserDto>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
 
             Mapper.CreateMap<LoginDto, UserEntity>().ForAllMembers(opt => opt.Condition(e => !e.IsSourceValueNull));
 

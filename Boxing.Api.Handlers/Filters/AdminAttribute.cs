@@ -30,12 +30,14 @@ namespace Boxing.Api.Handlers.Filters
                 token = tokenValue.FirstOrDefault();
             }
 
-            if (token != "securetoken")
+            var user = _db.Users.Where(u => u.AuthToken == token).FirstOrDefault();
+
+            if (user == null || !user.AuthToken.Contains("securetoken"))
             {
                 actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
             }
 
-            Constants.Headers.CurrentUserId = (_db.Users.Where(t => t.AuthToken == token).FirstOrDefault()).Id;
+            Constants.Headers.CurrentUserId = user.Id;
         }
     }
 }

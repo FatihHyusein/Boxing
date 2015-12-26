@@ -26,7 +26,7 @@ namespace Boxing.Core.Handlers.Features.Logins
             var entity = Mapper.Map<UserEntity>(request.User);
 
             var user = _db.Users.Where(u => u.Username == request.User.Username).FirstOrDefault();
-            
+
             if (user == null)
             {
                 throw new ArgumentNullException("User with this username does not exist.");
@@ -35,11 +35,11 @@ namespace Boxing.Core.Handlers.Features.Logins
             {
                 throw new ArgumentException("Username and passwort do not match.");
             }
-            user.AuthToken = "dafuq" + user.Id;
+            user.AuthToken = Guid.NewGuid().ToString();
 
-            if(user.Username == "admin")
+            if (user.Username == "admin")
             {
-                user.AuthToken = "securetoken";
+                user.AuthToken = string.Concat("securetoken", Guid.NewGuid().ToString());
             }
 
             await _db.SaveChangesAsync().ConfigureAwait(false);

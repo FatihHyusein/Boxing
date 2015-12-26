@@ -31,7 +31,7 @@ namespace Boxing.Api.Handlers.Filters
 
             var tokenFromDb = _db.Users.Where(t => t.AuthToken == token).FirstOrDefault();
 
-            if (tokenFromDb == null || token.Length < 1 || token != tokenFromDb.AuthToken)
+            if (tokenFromDb == null || token.Length < 1)
             {
                 actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
             }

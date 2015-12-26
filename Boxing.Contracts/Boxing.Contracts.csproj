@@ -48,8 +48,10 @@
     <Compile Include="Dto\GetPredictionDto.cs" />
     <Compile Include="Dto\LoginDto.cs" />
     <Compile Include="Dto\MatchDto.cs" />
+    <Compile Include="Dto\MatchInUserDto.cs" />
     <Compile Include="Dto\PostPutMatchDto.cs" />
     <Compile Include="Dto\PredictionDto.cs" />
+    <Compile Include="Dto\PredictionInUserDto.cs" />
     <Compile Include="Dto\RatingDto.cs" />
     <Compile Include="Dto\RequestParamsDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
