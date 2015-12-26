@@ -26,7 +26,7 @@ namespace Boxing.Core.Handlers.Features.Matches
 
             if (match == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Can not find match with this id.");
             }
             match.Boxer1 = request.Match.Boxer1;
             match.Boxer2 = request.Match.Boxer2;

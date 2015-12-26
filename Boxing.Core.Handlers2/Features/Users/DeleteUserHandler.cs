@@ -23,7 +23,7 @@ namespace Boxing.Core.Handlers.Features.Users
 
             if (user == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Can not find user with this id");
             }
 
             _db.Users.Remove(user);

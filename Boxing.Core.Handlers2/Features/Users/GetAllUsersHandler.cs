@@ -51,7 +51,7 @@ namespace Boxing.Core.Handlers.Features.Users
             }
             catch
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Chech your request parameters. Pay attention on small and big letters!");
             }
         }
     }

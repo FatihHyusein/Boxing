@@ -25,7 +25,7 @@ namespace Boxing.Core.Handlers.Features.Matches
             var match = await _db.Matches.FindAsync(request.Prediction.MatchId).ConfigureAwait(false);
             if (match.Winner != null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("The match has winner. Can not create prediction.");
             }
 
             var prediction = AutoMapper.Mapper.Map<PredictionEntity>(request.Prediction);

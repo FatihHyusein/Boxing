@@ -23,7 +23,7 @@ namespace Boxing.Core.Handlers.Features.Matches
 
             if (match == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Can not find match with this Id.");
             }
 
             _db.Matches.Remove(match);

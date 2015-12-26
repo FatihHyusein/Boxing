@@ -27,7 +27,7 @@ namespace Boxing.Core.Handlers.Features.Matches
             var match = await _db.Matches.FindAsync(request.Id).ConfigureAwait(false);
             if (match == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Can not find match with this id.");
             }
 
             match.Predictions = await _db.Predictions.Where(p => p.MatchId == request.Id).ToListAsync().ConfigureAwait(false);

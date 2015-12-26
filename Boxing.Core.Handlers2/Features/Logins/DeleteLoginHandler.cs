@@ -24,7 +24,7 @@ namespace Boxing.Core.Handlers.Features.Logins
 
             if (user == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("The user with this auth-token is logged off or does not exist.");
             }
 
             user.AuthToken = null;

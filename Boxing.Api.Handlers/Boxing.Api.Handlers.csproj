@@ -139,6 +139,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\AdminAttribute.cs" />
     <Compile Include="Filters\AuthAttribute.cs" />
+    <Compile Include="Filters\ExceptionsAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

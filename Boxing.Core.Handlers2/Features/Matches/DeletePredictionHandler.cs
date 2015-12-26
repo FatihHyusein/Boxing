@@ -23,13 +23,13 @@ namespace Boxing.Core.Handlers.Features.Matches
 
             if (prediction == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Can not find prediction with this id.");
             }
 
             var match = await _db.Matches.FindAsync(prediction.MatchId).ConfigureAwait(false);
             if (match.Winner != null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("The match has winner. Can not delete prediction.");
             }
 
             _db.Predictions.Remove(prediction);

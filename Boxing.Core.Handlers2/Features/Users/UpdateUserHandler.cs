@@ -25,13 +25,13 @@ namespace Boxing.Core.Handlers.Features.Users
         {
             if (request.User.Id != Constants.Headers.CurrentUserId)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("You are able to update only your profile.");
             }
 
             var user = await _db.Users.FindAsync(request.User.Id).ConfigureAwait(false);
             if (user == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Can not find user with this id.");
             }
 
             user.FullName = request.User.FullName;

@@ -33,6 +33,7 @@ namespace Boxing.Api.Handlers
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
             //config.Filters.Add(new AuthAttribute());
+            config.Filters.Add(new ExceptionsAttribute());
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterFilters(config);

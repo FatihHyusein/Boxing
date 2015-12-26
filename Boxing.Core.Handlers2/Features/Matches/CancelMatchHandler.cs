@@ -24,7 +24,7 @@ namespace Boxing.Core.Handlers.Features.Matches
 
             if (match.Winner != null)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("The match has winner, can not be canceled.");
             }
 
             match.Status = "Canceled";

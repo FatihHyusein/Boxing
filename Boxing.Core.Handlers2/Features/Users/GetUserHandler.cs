@@ -27,7 +27,7 @@ namespace Boxing.Core.Handlers.Features.Users
             var user = await _db.Users.FindAsync(request.Id).ConfigureAwait(false);
             if (user == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Can not find user with this id.");
             }
 
             user.Predictions = await _db.Predictions.Where(u => u.UserId == user.Id).ToListAsync().ConfigureAwait(false);
