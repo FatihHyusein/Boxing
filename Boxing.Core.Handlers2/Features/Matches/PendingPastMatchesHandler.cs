@@ -30,7 +30,7 @@ namespace Boxing.Core.Handlers.Features.Matches
                 {
                     return (await _db.Matches
                     .ToListAsync())
-                    .Where(m => m.DateOfMatch.CompareTo(DateTime.Now) < 0 && m.Winner == null)
+                    .Where(m => m.DateOfMatch.CompareTo(DateTime.Now) < 0 && m.Winner == null && m.Status != "Canceled")
                     .Where(t => t.Boxer1.Contains(request.RequestParams.Search) ||
                     t.Boxer2.Contains(request.RequestParams.Search) ||
                     t.DateOfMatch.Equals(request.RequestParams.Search) ||
@@ -46,7 +46,7 @@ namespace Boxing.Core.Handlers.Features.Matches
                 {
                     return (await _db.Matches
                     .ToListAsync())
-                    .Where(m => m.DateOfMatch.CompareTo(DateTime.Now) < 0 && m.Winner == null)
+                    .Where(m => m.DateOfMatch.CompareTo(DateTime.Now) < 0 && m.Winner == null && m.Status != "Canceled")
                     .Where(t => t.Boxer1.Contains(request.RequestParams.Search) ||
                     t.Boxer2.Contains(request.RequestParams.Search) ||
                     t.DateOfMatch.Equals(request.RequestParams.Search) ||
